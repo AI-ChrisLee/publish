@@ -1,6 +1,6 @@
 ---
 name: publish
-description: Use this when the cut is finished and the video needs its YouTube listing. The founder says "set this video up on YouTube", "write the listing", "do the description and the chapters", "/publish", and later "it is live" with the URL. It copies the title the package locked, writes the description with one call to action, reads the chapters off the finished cut, and hands back the tags and the end screen for the founder to type into YouTube Studio. When the upload is live it appends one row to squad/content-log.md, the file the Sunday read counts. It never uploads, never publishes and never schedules.
+description: Use this when the cut is finished and the video needs its YouTube listing. The founder says "set this video up on YouTube", "write the listing", "do the description and the chapters", "/publish", and later "it is live" or "the video is up" with the URL. It copies the title the package locked, writes the description with one call to action, reads the chapters off the finished cut, and hands back the tags and the end screen for the founder to type into YouTube Studio. When the upload is live it appends one row to squad/content-log.md, the file the Sunday read counts. It never uploads, never publishes and never schedules.
 ---
 
 # Publish
@@ -24,7 +24,7 @@ date, `YYYY-MM-DD`, the same one the package file carries.
 
 | Mode | The founder says | Beats |
 |---|---|---|
-| listing | "set this video up on YouTube", "write the listing", `/publish listing` | 0, 1, 2, 3 |
+| listing | "set this video up on YouTube", "write the listing", "do the description and the chapters", `/publish listing` | 0, 1, 2, 3 |
 | live | "it is live" with the URL, "the video is up", `/publish live` | 4 |
 
 ## The run map (where you run, where you STOP)
@@ -33,8 +33,8 @@ date, `YYYY-MM-DD`, the same one the package file carries.
 |---|---|
 | 0 THE SOURCES | AUTO: the package, the finished cut's captions, the script, the sales script's booking link. No package, or no title in it: **STOP**, the title is C2's |
 | 1 THE TITLE | AUTO: the MAIN title copied out of the package, character for character |
-| 2 THE DESCRIPTION | AUTO: one call to action, the hook line, the search paragraph, the chapters, the stack |
-| 3 THE LISTING | AUTO: written and printed, then **STOP · GATE: the founder uploads, sets the thumbnail, pastes the listing, points the end screen, and presses publish or sets the hour** |
+| 2 THE DESCRIPTION | AUTO: one call to action (the booking link tagged with the episode), the hook line, the search paragraph, the chapters, the stack |
+| 3 THE LISTING | AUTO: written and printed, then **STOP · GATE: the founder uploads, sets the thumbnail, pastes the listing, pins the comment, points the end screen, and presses publish or sets the hour** |
 | 4 THE ROW | HUMAN INPUT: the live URL; then AUTO: one row appended to the content log |
 
 The beat numbers ARE the step numbers below. Beat 3 is the only stop, and it is a real
@@ -47,7 +47,7 @@ this order and continue at the first one missing.
 |---|---|
 | `squad/week/<date>-listing.md` does not exist | beat 0 |
 | the listing exists and the founder has not said the video is live | nothing to redo, print the listing file and the by-hand list again |
-| the founder gives a live URL and `squad/content-log.md` holds no row with that video id | beat 4 |
+| the founder gives a live URL and `squad/content-log.md` holds no row with that video id (or `.claude/squad-roots.md` carries no `content log` row) | beat 4 |
 | a row with that video id is already there | done. Never write a second row for one video |
 
 The last two rows are entered by the founder's word, never by a file: an upload happens
@@ -56,8 +56,10 @@ inside YouTube and leaves nothing on the laptop.
 ## The outputs (3 files, every run)
 
 1. `squad/week/<date>-listing.md`: the title, the description whole, the chapter block,
-   the tags and the end screen target. It is what the founder copies from at upload,
-   which can be days after this run.
+   the pinned comment, the tags and the end screen target. The booking link in the
+   description and in the pinned comment carries `?utm_source=youtube&utm_content=epNN`,
+   so every booking names the episode that brought it. It is what the founder copies from
+   at upload, which can be days after this run.
 2. `squad/content-log.md`: ONE row appended per video, columns
    `date | title | link | video id`. The file with its header row when it does not exist.
    C6 reads every row on Sunday.
@@ -73,7 +75,7 @@ never the script, never the cut.
 
 | What | Where | What it gives |
 |---|---|---|
-| the package | `squad/week/<date>-package.md`, the latest (or `<date>-repackage.md` when this video was repackaged) | the MAIN title, the TEST line, and `episode:` naming the episode folder |
+| the package | `squad/week/<date>-package.md`, the latest (or `<date>-repackage.md` when this video was repackaged) | the MAIN title, the TEST line, and `episode:` naming the episode folder, `epNN`, which is also the tag the booking link carries |
 | the finished cut | the caption file (`.srt`) the cut wrote, or the cut's exported transcript | the real timings the chapters come from |
 | the script | `03_SCRIPT.md` in that episode folder | the hook line and the tools named on camera |
 | the sales script | `squad/sales.md` | the booking link, which is the one call to action |
@@ -85,7 +87,7 @@ never the script, never the cut.
 timestamp, and never take chapters off the script; the script's timings were estimates
 the cut moved.
 
-**No `squad/sales.md`, or a booking link still reading `[BOOKING LINK]`:** write the
+**No `squad/sales.md`:** write the
 description with no call to action, say so in one line, and tell the founder the link is
 G6's and the listing is rewritten once it exists.
 
@@ -103,7 +105,11 @@ Say that in one line and change nothing.
 This order, no improvising:
 
 1. **ONE call to action at the top**, as `Phrase : URL`. The booking link from
-   `squad/sales.md`, as a plain URL.
+   `squad/sales.md` with `?utm_source=youtube&utm_content=epNN` on the end, NN the
+   episode number off the package's `episode:` line (ep01 stays ep01). A link that
+   already carries a `?` gets the two tags joined on with `&` instead. cal.com shows
+   utm_source and utm_content on the booking's details page on its own, so the episode
+   that brought a booking shows there with nothing to set up.
 2. A hook line.
 3. One plain paragraph for search, in the words a buyer would type.
 4. The `CHAPTERS` block.
@@ -113,7 +119,7 @@ This order, no improvising:
 one tool in THE STACK the video actually runs on. A STACK link is a tool link. It never
 carries the call to action and it never gets a row of its own.
 
-Plain URLs only. No tracked redirect, no minted link, no shortener.
+Plain URLs only. No redirect through another site, no shortener.
 
 No em dashes anywhere. This is outward-facing.
 
@@ -128,6 +134,9 @@ that actually starts there.
 end screen points at the next video in the series, or at the founder's best related
 video. Both go in the file for the founder to type in Studio.
 
+**The pinned comment, as text.** The call to action line again, the phrase and the same
+tagged booking link, for the founder to post as the first comment and pin.
+
 Write `squad/week/<date>-listing.md` with all of it and print it.
 
 **Then STOP, and say plainly what is left, all of it by hand in YouTube Studio:**
@@ -137,6 +146,7 @@ Write `squad/week/<date>-listing.md` with all of it and print it.
 - Set the thumbnail from the package, and read the package's own TEST line while it is
   open.
 - Paste the title and the description.
+- Post the pinned comment and pin it.
 - Type the tags, point the end screen.
 - Press publish, or set the hour and let YouTube press it.
 
