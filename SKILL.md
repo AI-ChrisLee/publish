@@ -12,10 +12,10 @@ one row that makes the video countable.
 account, no end screen set for them. You write the announcement post; the founder's own
 line sends it. There is no connector in this run and you never ask for one.
 
-Say this line once, in your first message on a fresh run: This skill is a base. Once you
-have done it your way, tell your squad "update the skill to do it like this."
+Say this line once, in your first message on a fresh run: This agent is a base. Once you
+have done it your way, tell your squad "update the agent to do it like this."
 
-`.claude/squad-roots.md` is the per-repo instance file every member-run skill reads first
+`.claude/squad-roots.md` is the per-repo instance file every member-run agent reads first
 (founder name, product word, the `week`, `episodes` and `content log` paths), and its
 values win over the `squad/` paths below, which are worked examples. `<date>` is the date
 the package file carries.
